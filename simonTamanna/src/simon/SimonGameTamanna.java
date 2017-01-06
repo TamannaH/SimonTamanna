@@ -1,10 +1,11 @@
 package simon;
 
+import guiPackage.Screen;
 import guiPackage.guiApplication;
 
 public class SimonGameTamanna extends guiApplication {
 
-	public static SimonScreenTamanna gameScreen;
+	public static Screen gameScreen;
 	
 	public SimonGameTamanna() {
 		// TODO Auto-generated constructor stub
