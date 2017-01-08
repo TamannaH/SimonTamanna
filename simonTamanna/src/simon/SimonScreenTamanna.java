@@ -96,14 +96,14 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 
 	public MoveInterfaceTamanna randomMove() {
 		ButtonInterfaceTamanna b = null;
-		int randNum = (int)(Math.random()*button.length);
+		int randomNum = (int)(Math.random()*button.length);
 		
-		while(randNum == lastSelectedButton){
-			randNum = (int)(Math.random()*button.length);
+		while(randomNum == lastSelectedButton){
+			randomNum = (int)(Math.random()*button.length);
 		}
 		
-		b = button[randNum];
-		lastSelectedButton = randNum;
+		b = button[randomNum];
+		lastSelectedButton = randomNum;
 		return getMove(b);
 	}
 
@@ -118,7 +118,7 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 
 	public void addButtons(ArrayList<Visible> viewObjects) {
 		int numOfButtons = 4;
-		Color[] colors= {Color.blue,Color.red, Color.yellow, Color.green};
+		Color[] colors= {Color.blue, Color.red, Color.yellow, Color.green, Color.orange, Color.pin};
 		
 		for(int i= 0; i < numOfButtons; i++){
 			
@@ -146,7 +146,6 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 						blink.start();
 					}
 				}
-				
 			});
 			
 			if (b == sequenceOfMoves.get(sequenceIndex)){
