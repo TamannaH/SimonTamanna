@@ -1,11 +1,12 @@
 package simon;
 
-import guiPackage.components.Component;
-import guiPackage.components.Action;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import guiPractice8.component.Action;
+import guiPractice8.component.Component;
 
 public class Button extends Component implements ButtonInterfaceTamanna {
 
