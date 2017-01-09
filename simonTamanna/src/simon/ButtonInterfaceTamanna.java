@@ -2,8 +2,8 @@ package simon;
 
 import java.awt.Color;
 
-import guiPackage.components.Action;
-import guiPackage.components.Clickable;
+import guiPractice8.component.Action;
+import guiPractice8.component.Clickable;
 
 public interface ButtonInterfaceTamanna extends Clickable {
 
@@ -14,6 +14,7 @@ public interface ButtonInterfaceTamanna extends Clickable {
 	void setAction(Action action);
 	void dim();
 	void highlight();
+	boolean isHovered(int x, int y);
 	
 	
 }

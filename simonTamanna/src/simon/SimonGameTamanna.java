@@ -1,9 +1,9 @@
 package simon;
 
-import guiPackage.Screen;
-import guiPackage.guiApplication;
+import guiPractice8.Screen;
+import guiPractice8.GUIApplication;
 
-public class SimonGameTamanna extends guiApplication {
+public class SimonGameTamanna extends GUIApplication {
 
 	public static Screen gameScreen;
 	

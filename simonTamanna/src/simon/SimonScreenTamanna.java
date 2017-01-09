@@ -1,13 +1,16 @@
 package simon;
 
 import java.awt.Color;
+import java.awt.Label;
 import java.util.ArrayList;
+import java.util.List;
 
-import guiPackage.components.Action;
-import guiPackage.components.Button;
-import guiPackage.components.TextLabel;
-import guiPackage.components.Visible;
-import guiPackage.sampleGames.ClickableScreen;
+import guiPractice8.component.Action;
+import guiPractice8.component.ClickableScreen;
+import guiPractice8.component.TextLabel;
+import guiPractice8.component.Visible;
+
+
 
 public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	//public ArrayList<ButtonInterfaceTamanna> button;
@@ -118,7 +121,7 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 
 	public void addButtons(ArrayList<Visible> viewObjects) {
 		int numOfButtons = 4;
-		Color[] colors= {Color.blue, Color.red, Color.yellow, Color.green, Color.orange, Color.pin};
+		Color[] colors= {Color.blue, Color.red, Color.yellow, Color.green, Color.orange, Color.pink};
 		
 		for(int i= 0; i < numOfButtons; i++){
 			
@@ -165,6 +168,12 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 
 	private ButtonInterfaceTamanna getAButton() {
 		return null;
+	}
+
+	@Override
+	public void initAllObjects(List<Visible> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 	
