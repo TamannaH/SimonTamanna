@@ -48,24 +48,23 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 
 	@Override
 	public ButtonInterfaceTamanna getAButton() {
-		
 		return null;
 	}
 
 	
 	@Override
 	public void highlight() {
-	
-
-	}
-
-	@Override
-	public void dim() {
 		if(color != null){
 			displayColor = color;
 		}
 		chosenColor = true;
 		update();
+
+	}
+
+	@Override
+	public void dim() {
+		
 
 	}
 

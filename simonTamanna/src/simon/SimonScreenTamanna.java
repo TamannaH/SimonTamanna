@@ -32,7 +32,7 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	}
 
 	public void run() {
-		label.setText("");
+		if(label.equals(null)) label.setText("");
 		nextRound();
 	}
 

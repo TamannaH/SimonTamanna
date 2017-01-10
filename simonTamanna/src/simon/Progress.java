@@ -1,33 +1,40 @@
 package simon;
 
+import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import guiPractice8.component.Component;
 
 public class Progress extends Component implements ProgressInterfaceTamanna {
 
+	private static final int HEIGHT = 150;
+	private static final int WIDTH = 60;
+	private boolean gameOver;
+	private String sequence;
+	private String round;
+
 	public Progress(int x, int y, int w, int h) {
-		super(x, y, w, h);
+		super(60, 60, WIDTH, HEIGHT);
 	}
 
 	public void gameOver() {
-		
+		gameOver = true;
+		update();
 
 	}
 
-	public void setRound(int r) {
-		
+	public void setRound(int num) {
+		round = "Round " +num;
+		update();
 
 	}
 
-	public void setSequenceSize(int s) {
-		
-
-	}
-
-	public void update(Graphics2D g) {
-		
+	public void setSequenceSize(int size) {
+		sequence = "Sequence length " +size;
+		update();
 
 	}
 
@@ -67,8 +74,28 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 	}
 
 	@Override
-	public void update() {
-		
+	public void update(Graphics2D g) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		FontMetrics fm = g.getFontMetrics();
+		if(gameOver){
+			g.setColor(new Color(255,55,90));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.white);
+			String go = "GAME OVER!";
+			g.drawString(go, (WIDTH - fm.stringWidth(go))/2, 20);
+			g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);
+
+		}else{
+			g.setColor(new Color(220,255,230));
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.black);
+			g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
+			if(round !=null && sequence != null){
+
+				g.drawString(round, (WIDTH - fm.stringWidth(round))/2, 20);
+				g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);
+			}
+		}
 	}
 
 }
