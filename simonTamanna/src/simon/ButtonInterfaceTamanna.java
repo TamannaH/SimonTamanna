@@ -15,6 +15,7 @@ public interface ButtonInterfaceTamanna extends Clickable {
 	void dim();
 	void highlight();
 	boolean isHovered(int x, int y);
+	void setName(String string);
 	
 	
 }
