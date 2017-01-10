@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import guiPractice8.component.ClickableScreen;
+import guiPractice8.component.TextArea;
 import guiPractice8.component.Action;
 import guiPractice8.component.TextLabel;
 import guiPractice8.component.Visible;
@@ -15,6 +16,9 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	private ButtonInterfaceTamanna[] button;
 	private ProgressInterfaceTamanna progress;
 	private ArrayList<MoveInterfaceTamanna> sequence;
+	
+	//Intro words for when a user opens up the game
+		private TextLabel introWords;
 	
 	private int roundNumber;
 	private boolean acceptingInput;
@@ -143,6 +147,9 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 		sequence = new ArrayList<MoveInterfaceTamanna>();
 		addButtons(viewObjects);
 		progress = getProgress();
+//		introWords = new TextLabel(0,0,0,0,"Welcome to Simon!"
+//				+ " A memory game that will test your greatest potential. All one has to do is select the colors that are chosen in a specific order. "
+//				+ "The number of colors selected increase each round and get faster.");
 		label = new TextLabel(220,310,300,40,"Let's play Simon!");
 		//add 2 moves to start
 		lastSelectedButton = -1;

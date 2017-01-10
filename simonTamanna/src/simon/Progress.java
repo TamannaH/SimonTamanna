@@ -16,11 +16,6 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 	private String sequence;
 	private boolean gameOver;
 	
-	//Intro words for when a user opens up the game
-	private String introWords = "Welcome to Simon!"
-			+ " A memory game that will test your greatest potential. All one has to do is select the colors that are chosen in a specific order. "
-			+ "The number of colors selected increase each round and get faster.";
-	
 	// Colors selections for Game Over box
 	private int redOver = 160;
 	private int greenOver = 35;
