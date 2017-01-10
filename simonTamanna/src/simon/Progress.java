@@ -52,6 +52,7 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 
 	@Override
 	public void update(Graphics2D g) {
+		//boxCreate(g);
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if(gameOver){
 			runOver(g);
@@ -73,6 +74,7 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 		}
 		
 	}
+	
 
 	private void runOver(Graphics2D g) {
 		FontMetrics fm = g.getFontMetrics();
@@ -83,6 +85,17 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 		g.drawString(gameEnd, (WIDTH - fm.stringWidth(gameEnd))/2, 20);
 		g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);
 	}
+	
+//	private void boxCreate(Graphics2D g) {
+//	FontMetrics fm = g.getFontMetrics();
+//	g.setColor(new Color(redOver,greenOver,blueOver));
+//	g.fillRect(0, 0, WIDTH, HEIGHT);
+//	g.setColor(Color.white);
+//	String gameEnd = "A memory game that will test your greatest potential. All one has to do is select the colors that are chosen in a specific order. "
+//			+ "The number of colors selected increase each round and get faster.";
+//	g.drawString(gameEnd, (WIDTH - fm.stringWidth(gameEnd))/2, 20);
+//	g.drawString(sequence, (WIDTH - fm.stringWidth(sequence))/2, 40);
+//
 	
 	
 	
