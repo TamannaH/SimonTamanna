@@ -4,73 +4,40 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 
 import guiPractice8.component.Component;
 
 public class Progress extends Component implements ProgressInterfaceTamanna {
 
-	private static final int HEIGHT = 150;
-	private static final int WIDTH = 60;
-	private boolean gameOver;
-	private String sequence;
-	private String round;
+	private static final int WIDTH = 120;
+	private static final int HEIGHT = 50;
 
-	public Progress(int x, int y, int w, int h) {
-		super(60, 60, WIDTH, HEIGHT);
+	private String round;
+	private String sequence;
+	private boolean gameOver;
+	
+	public Progress() {
+		super(60,60,WIDTH,HEIGHT);
 	}
 
+	@Override
 	public void gameOver() {
 		gameOver = true;
 		update();
-
 	}
 
-	public void setRound(int num) {
-		round = "Round " +num;
-		update();
-
-	}
-
-	public void setSequenceSize(int size) {
-		sequence = "Sequence length " +size;
+	@Override
+	public void setRound(int r) {
+		round = "Round# " + r;
 		update();
 
 	}
 
 	@Override
-	public int getHeight() {
-		
-		return 0;
-	}
+	public void setSequenceSize(int s) {
+		sequence = "Sequence length "  + s;
+		update();
 
-	@Override
-	public BufferedImage getImage() {
-		
-		return null;
-	}
-
-	@Override
-	public int getWidth() {
-		
-		return 0;
-	}
-
-	@Override
-	public int getX() {
-		
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		
-		return 0;
-	}
-
-	@Override
-	public boolean isAnimated() {
-		return false;
 	}
 
 	@Override
@@ -97,5 +64,4 @@ public class Progress extends Component implements ProgressInterfaceTamanna {
 			}
 		}
 	}
-
 }

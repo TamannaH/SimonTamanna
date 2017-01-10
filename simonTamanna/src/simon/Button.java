@@ -1,30 +1,51 @@
 package simon;
 
-
 import java.awt.Color;
 
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 
 import guiPractice8.component.Action;
 import guiPractice8.component.Component;
 
+
 public class Button extends Component implements ButtonInterfaceTamanna {
 
-	private static final int HEIGHT = 180;
-	private static final int WIDTH = 180;
+	private static final int WIDTH = 50;
+	private static final int HEIGHT = 50;
 	private Action action;
+	private Color c;
 	private Color displayColor;
-	private Color color;
-	private boolean chosenColor;
+	private boolean highlight;
 	
-	
+	public Button() {
+		super(0,0,WIDTH,HEIGHT);
+	}
 
-	public Button(int x, int y, int w, int h) {
-		super(x, y, WIDTH, HEIGHT);
-	
+	@Override
+	public void highlight() {
+		if(c != null) displayColor = c;
+		highlight = true;
+		update();
+	}
+
+	@Override
+	public void dim() {
+		displayColor = Color.gray;
+		highlight = false;
+		update();
+	}
+
+	@Override
+	public void setAction(Action action) {
+		this.action = action;
+	}
+
+	@Override
+	public void act() {
+		action.act();
+		
 	}
 
 	@Override
@@ -34,38 +55,10 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 	}
 
 	@Override
-	public void act() {
-		action.act();
-	}
-
-	@Override
 	public void setColor(Color color) {
-		this.color = color;
-		displayColor = color;
+		this.c = color;
+		displayColor = c;
 		update();
-
-	}
-
-	@Override
-	public ButtonInterfaceTamanna getAButton() {
-		return null;
-	}
-
-	
-	@Override
-	public void highlight() {
-		if(color != null){
-			displayColor = color;
-		}
-		chosenColor = true;
-		update();
-
-	}
-
-	@Override
-	public void dim() {
-		
-
 	}
 
 	@Override
@@ -76,10 +69,9 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 		g.fillOval(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.black);
 		g.drawOval(0, 0, WIDTH-1, HEIGHT-1);
-		if(chosenColor){
+		if(highlight){
 			g.setColor(Color.white);
 			Polygon p = new Polygon();
-			
 			int s = (int)(5/8.0 * WIDTH);
 			int t = (int)(1.0/5*HEIGHT)+4;
 			p.addPoint(s-4, t-4);
@@ -90,30 +82,15 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 			p.addPoint(s+8, t+3);
 			g.fill(p);
 		}
-
 	}
 
-	@Override
-	public void setX(int i) {
-		
-		
-	}
 
-	@Override
-	public void setY(int i) {
-		
-		
+	private String name;
+	public void setName(String s){
+		this.name = s;
 	}
-
-	@Override
-	public void setAction(Action action) {
-		this.action = action;
-		
-	}
-
-	@Override
-	public void setName(String string) {
-		// TODO Auto-generated method stub
-		
+	
+	public String toString(){
+		return name;
 	}
 }
