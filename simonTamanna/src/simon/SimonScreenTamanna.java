@@ -2,24 +2,27 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
-import guiPackage.components.Action;
-import guiPackage.components.Button;
-import guiPackage.components.TextLabel;
-import guiPackage.components.Visible;
-import guiPackage.sampleGames.ClickableScreen;
+import guiPractice8.component.ClickableScreen;
+import guiPractice8.component.TextArea;
+import guiPractice8.component.Action;
+import guiPractice8.component.TextLabel;
+import guiPractice8.component.Visible;
 
 public class SimonScreenTamanna extends ClickableScreen implements Runnable {
-	//public ArrayList<ButtonInterfaceTamanna> button;
+
+	private TextLabel label;
 	private ButtonInterfaceTamanna[] button;
-	public ArrayList<MoveInterfaceTamanna> moveList;
-	public ArrayList<MoveInterfaceTamanna> sequenceOfMoves;
-	public ProgressInterfaceTamanna progress;
-	public TextLabel label;
-	public int roundNumber;
-	public int sequenceIndex;
-	public static boolean acceptingInput;	
+	private ProgressInterfaceTamanna progress;
+	private ArrayList<MoveInterfaceTamanna> sequence;
 	
+	//Intro words for when a user opens up the game
+		private TextLabel introWords;
+	
+	private int roundNumber;
+	private boolean acceptingInput;
+	private int sequenceIndex;
 	private int lastSelectedButton;
 	
 	public SimonScreenTamanna(int width, int height) {
@@ -28,6 +31,7 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 		app.start();
 	}
 
+	@Override
 	public void run() {
 		label.setText("");
 		nextRound();
@@ -36,10 +40,9 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	public void nextRound() {
 		acceptingInput =false;
 		roundNumber ++;
-		sequenceOfMoves.add(randomMove());
-		//check
+		sequence.add(randomMove());
 		progress.setRound(roundNumber);
-		progress.setSequenceSize(sequenceOfMoves.size());
+		progress.setSequenceSize(sequence.size());
 		
 		changeText("Simon's Turn");
 		label.setText("");
@@ -51,19 +54,13 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 
 	private void playSequence() {
 		ButtonInterfaceTamanna b = null;
-		for(int i = 0; i < sequenceOfMoves.size(); i++){
-			if(b != null) b.dim();
-			
-			b = sequenceOfMoves.get(sequenceIndex).getButton();
+		for(int i=0;i<sequence.size();i++){
+			if(b!=null)b.dim();
+			b = sequence.get(i).getButton();
 			b.highlight();
-		
-			//10 seconds time
-			int sleepTime = 10000/roundNumber;
-			if(sleepTime<=0)sleepTime=2;
 			try {
-				Thread.sleep(sleepTime);
+				Thread.sleep((long)(2000*(2.0/(roundNumber+2))));
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -74,98 +71,94 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	private void changeText(String string) {
 		try{
 			label.setText(string);
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons(viewObjects);
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		sequenceOfMoves = new ArrayList<MoveInterfaceTamanna>();
-		//add 2 moves to start
-		lastSelectedButton = -1;
-		sequenceOfMoves.add(randomMove());
-		sequenceOfMoves.add(randomMove());
-		roundNumber = 0;
-		viewObjects.add(progress);
-		viewObjects.add(label);
-	}
-
 	public MoveInterfaceTamanna randomMove() {
 		ButtonInterfaceTamanna b = null;
-		int randomNum = (int)(Math.random()*button.length);
-		
-		while(randomNum == lastSelectedButton){
-			randomNum = (int)(Math.random()*button.length);
+		int randNum = (int)(Math.random()*button.length);
+		while(randNum==lastSelectedButton){
+			randNum = (int)(Math.random()*button.length);
 		}
-		
-		b = button[randomNum];
-		lastSelectedButton = randomNum;
-		return getMove(b);
+		b = button[randNum];
+		lastSelectedButton = randNum;
+		return new Move(b);
 	}
 
-	public MoveInterfaceTamanna getMove(ButtonInterfaceTamanna b) {
-		return null;
-	}
 
 	public ProgressInterfaceTamanna getProgress() {
-		//Partner's code
-		return null;
+		return new Progress();
 	}
 
-	public void addButtons(ArrayList<Visible> viewObjects) {
-		int numOfButtons = 4;
-		Color[] colors= {Color.blue, Color.red, Color.yellow, Color.green, Color.orange, Color.pin};
-		
-		for(int i= 0; i < numOfButtons; i++){
-			
-			final ButtonInterfaceTamanna b = getAButton();
-			b.setColor(colors[i]);
-			b.setX(50);
-			b.setY(50);
-			
+	public void addButtons(List<Visible> viewObjects) {
+		int numOfButtons = 6;
+		button = new ButtonInterfaceTamanna[numOfButtons];
+		Color[] colors= {Color.blue,Color.red,Color.magenta, Color.cyan, 
+				Color.green, Color.pink};
+		for(int i= 0; i<numOfButtons; i++){
+			button[i] = getAButton();
+			button[i].setColor(colors[i]);
+			button[i].setX(250 + (int)(80*Math.cos(i*2*Math.PI/(numOfButtons))));
+			button[i].setY(175 - (int)(80*Math.sin(i*2*Math.PI/(numOfButtons))));
+			final ButtonInterfaceTamanna b = button[i];
+			b.dim();
 			b.setAction(new Action(){
 				public void act() {
-					if(acceptingInput){
-						Thread blink = new Thread(new Runnable(){
-							public void run() {
-								b.highlight();
-								try {
-									Thread.sleep(800);
-									b.dim();
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+					Thread blink = new Thread(new Runnable(){
+						public void run() {
+							b.highlight();
+							try {
+								Thread.sleep(400);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
 							}
+							b.dim();
+						}
 							
-						});
-						blink.start();
+					});
+					blink.start();
+					if(acceptingInput && sequence.get(sequenceIndex).getButton() == b){
+						sequenceIndex++;
+					}else if(acceptingInput){
+						progress.gameOver();
+						return;
+					}
+					if(sequenceIndex == sequence.size()){
+						Thread nextRound = new Thread(SimonScreenTamanna.this);
+						nextRound.start();
 					}
 				}
+				
 			});
-			
-			if (b == sequenceOfMoves.get(sequenceIndex)){
-				sequenceIndex++;
-			}
-			else{
-				progress.gameOver();
-			}
-			if (sequenceIndex == sequenceOfMoves.size()){
-				Thread nextRound = new Thread(SimonScreenTamanna.this);
-				nextRound.start();
-			}
-			viewObjects.add(b);
+			viewObjects.add(button[i]);
 		}
 		
 	}
 
 	private ButtonInterfaceTamanna getAButton() {
-		return null;
+		return new Button();
 	}
-}
-	
 
+	@Override
+	public void initAllObjects(List<Visible> viewObjects) {
+		sequence = new ArrayList<MoveInterfaceTamanna>();
+		addButtons(viewObjects);
+		progress = getProgress();
+//		introWords = new TextLabel(0,0,0,0,"Welcome to Simon!"
+//				+ " A memory game that will test your greatest potential. All one has to do is select the colors that are chosen in a specific order. "
+//				+ "The number of colors selected increase each round and get faster.");
+		label = new TextLabel(220,310,300,40,"Let's play Simon!");
+		//add 2 moves to start
+		lastSelectedButton = -1;
+		sequence.add(randomMove());
+		sequence.add(randomMove());
+		roundNumber = 0;
+		viewObjects.add(progress);
+		viewObjects.add(label);
+		
+	}
+
+}

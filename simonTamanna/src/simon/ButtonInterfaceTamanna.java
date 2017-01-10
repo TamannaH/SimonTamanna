@@ -2,18 +2,20 @@ package simon;
 
 import java.awt.Color;
 
-import guiPackage.components.Action;
-import guiPackage.components.Clickable;
+import guiPractice8.component.Action;
+import guiPractice8.component.Clickable;
 
 public interface ButtonInterfaceTamanna extends Clickable {
-
+	
 	void setColor(Color color);
-	ButtonInterfaceTamanna getAButton();
-	void setX(int i);
-	void setY(int i);
-	void setAction(Action action);
-	void dim();
+
 	void highlight();
-	
-	
+
+	void dim();
+
+	void setAction(Action action);
+
+	void setX(int i);
+
+	void setY(int i);
 }

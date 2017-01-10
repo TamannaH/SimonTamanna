@@ -1,5 +1,6 @@
 package simon;
 
+
 public class Move implements MoveInterfaceTamanna {
 
 	private ButtonInterfaceTamanna button;
