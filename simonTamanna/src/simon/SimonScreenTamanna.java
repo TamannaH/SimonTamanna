@@ -90,15 +90,15 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 	}
 
 	public void addButtons(List<Visible> viewObjects) {
-		int numOfButtons = 5;
+		int numOfButtons = 6;
 		button = new ButtonInterfaceTamanna[numOfButtons];
-		Color[] colors= {Color.blue,Color.red,Color.magenta, Color.yellow, 
-				Color.green};
+		Color[] colors= {Color.blue,Color.red,Color.magenta, Color.cyan, 
+				Color.green, Color.pink};
 		for(int i= 0; i<numOfButtons; i++){
 			button[i] = getAButton();
 			button[i].setColor(colors[i]);
-			button[i].setX(260 + (int)(60*Math.cos(i*2*Math.PI/(numOfButtons))));
-			button[i].setY(200 - (int)(60*Math.sin(i*2*Math.PI/(numOfButtons))));
+			button[i].setX(250 + (int)(80*Math.cos(i*2*Math.PI/(numOfButtons))));
+			button[i].setY(175 - (int)(80*Math.sin(i*2*Math.PI/(numOfButtons))));
 			final ButtonInterfaceTamanna b = button[i];
 			b.dim();
 			b.setAction(new Action(){
