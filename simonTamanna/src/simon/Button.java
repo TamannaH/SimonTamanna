@@ -110,10 +110,13 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 		this.action = action;
 		
 	}
-
-	@Override
-	public void setName(String string) {
-		// TODO Auto-generated method stub
-		
+	
+	private String name;
+	public void setName(String s){
+		this.name = s;
+	}
+	
+	public String toString(){
+		return name;
 	}
 }

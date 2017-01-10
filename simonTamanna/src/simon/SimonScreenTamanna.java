@@ -31,18 +31,10 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 		app.start();
 	}
 
+	@Override
 	public void run() {
-		
-		if(label.equals(null)) label.setText("");
+		label.setText("");
 		nextRound();
-		
-//		try{
-//			label.setText("");
-//			Thread.sleep(1000);
-//			nextRound();
-//		}catch(InterruptedException e){
-//			e.printStackTrace();
-//		}
 	}
 
 	public void nextRound() {
