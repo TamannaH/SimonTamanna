@@ -74,4 +74,16 @@ public class Button extends Component implements ButtonInterfaceTamanna {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setAction(simon.Action action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAction(simon.Action action) {
+		// TODO Auto-generated method stub
+		
+	}
 }
