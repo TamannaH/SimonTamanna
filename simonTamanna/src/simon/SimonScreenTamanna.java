@@ -26,7 +26,7 @@ public class SimonScreenTamanna extends ClickableScreen implements Runnable {
 		Thread app = new Thread(this);
 		app.start();
 	}
-	
+
 	@Override
 	public void run() {
 		label.setText("");
